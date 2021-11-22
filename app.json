@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "PrimumServices",
+    "slug": "PrimumServices",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "PrimumServices"
+}
