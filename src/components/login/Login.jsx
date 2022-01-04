@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button, Headline, Subheading, Text } from "react-native-paper";
+import PrmFormBuilder from "../PrmComponents/FormBuilder/PrmFormBuilder";
 import LoginFormComponent from "./FormComponent/LoginFormComponent";
 
 // Set values for StyleComponent
@@ -12,7 +13,7 @@ function LoginComponent({ navigation }) {
     <ScrollView>
       <View style={styles.mainViewContainer}>
         <View style={styles.greattingsAndLogoViewContainer}>
-          <Image style={styles.logoImage} source={styles.logoImageUrl} />
+          <Image style={styles.logoImage} source={require("../../assets/img/jenkins_temp_logo.png")} />
           <Headline style={{ textAlign: "center" }}>
             Bem vindo ao Charles.
           </Headline>
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     height: height * 0.3,
     resizeMode: "contain",
   },
-  logoImageUrl: require("../../assets/img/kisspng-jenkins-docker-continuous-delivery-installation-so-5afa799e532611.4457665715263645743406.png"),
+  logoImageUrl: require("../../assets/img/LOGO_PRIMUM_BLACK.png")
 });
 
 export default LoginComponent;

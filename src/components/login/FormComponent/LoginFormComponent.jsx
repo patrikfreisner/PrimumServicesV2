@@ -9,6 +9,9 @@ import {
   Headline,
 } from "react-native-paper";
 
+import PrmFormBuilder from '../../PrmComponents/FormBuilder/PrmFormBuilder'
+import PrmFormInputText from '../../PrmComponents/FormBuilder/PrmFormInputText'
+
 export default function LoginFormComponent({ navigation }) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -20,30 +23,32 @@ export default function LoginFormComponent({ navigation }) {
 
   function onSubmit() {
     showModal();
-    console.log("Submitted!");
   }
 
   return (
     <View>
-      <TextInput
-        label="Usuário"
-        mode="outlined"
-        value={user}
-        keyboardType="email-address"
-        onChangeText={(user) => setUser(user)}
-      />
-      <TextInput
-        label="Senha"
-        mode="outlined"
-        value={password}
-        textContentType="password"
-        secureTextEntry={true}
-        onChangeText={(passw) => setPassword(passw)}
-      />
-      <Button style={{ marginTop: 15 }} mode="contained" onPress={onSubmit}>
-        Entrar
-      </Button>
-
+      <PrmFormBuilder onSubmit={onSubmit}>
+        <PrmFormInputText
+          label="Usuário"
+          name="user"
+          rules={{ required: true }}
+          mode="outlined"
+          value={user}
+          keyboardType="email-address"
+        />
+        <PrmFormInputText
+          label="Senha"
+          name="password"
+          rules={{ required: true, minLength: 8 }}
+          mode="outlined"
+          value={password}
+          textContentType="password"
+          secureTextEntry={true}
+        />
+        <Button type="submit" style={{ marginTop: 15 }} mode="contained">
+          Entrar
+        </Button>
+      </PrmFormBuilder>
       <Portal>
         <Modal
           visible={visible}

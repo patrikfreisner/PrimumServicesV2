@@ -5,6 +5,7 @@ import { View, Text } from "react-native";
 function PrmFormBuilder({ onSubmit, defaultValues, children }) {
   const {
     control,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -13,8 +14,6 @@ function PrmFormBuilder({ onSubmit, defaultValues, children }) {
 
   return (
     <View>
-      <Text> PrmFormBuilder </Text>
-
       {React.Children.map(children, (child) => {
         if (!child.props.name && child.type.name === "PrmFormInputText") {
           throw "Can't accept 'PrmFormInputText' field type without 'name' attribute!";
@@ -29,6 +28,7 @@ function PrmFormBuilder({ onSubmit, defaultValues, children }) {
         } else {
           return React.createElement(child.type, {
             ...child.props,
+            watch: watch,
             control: control,
             errors: errors,
           });

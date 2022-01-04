@@ -12,7 +12,7 @@ function RegistrationComponent({ navigation }) {
     <ScrollView>
       <View style={styles.mainViewContainer}>
         <View style={styles.greattingsAndLogoViewContainer}>
-          <Image style={styles.logoImage} source={styles.logoImageUrl} />
+          <Image style={styles.logoImage} source={require("../../assets/img/jenkins_temp_logo.png")} />
           <Headline style={{ textAlign: "center" }}>
             Primeiro umas informações ;)
           </Headline>
@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     height: height * 0.3,
     resizeMode: "contain",
-  },
-  logoImageUrl: require("../../assets/img/kisspng-jenkins-docker-continuous-delivery-installation-so-5afa799e532611.4457665715263645743406.png"),
+  }
 });
 
 export default RegistrationComponent;

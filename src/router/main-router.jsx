@@ -26,7 +26,7 @@ function MainRoutes() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="test">
+        <Stack.Navigator initialRouteName="register">
           <Stack.Screen
             name="login"
             component={LoginComponent}
