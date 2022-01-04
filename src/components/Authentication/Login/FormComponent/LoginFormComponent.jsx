@@ -9,8 +9,8 @@ import {
   Headline,
 } from "react-native-paper";
 
-import PrmFormBuilder from '../../PrmComponents/FormBuilder/PrmFormBuilder'
-import PrmFormInputText from '../../PrmComponents/FormBuilder/PrmFormInputText'
+import PrmFormBuilder from "../../../PrimumComponents/FormBuilder/PrmFormBuilder";
+import PrmFormInputText from "../../../PrimumComponents/FormBuilder/PrmFormInputText";
 
 export default function LoginFormComponent({ navigation }) {
   const [user, setUser] = useState("");

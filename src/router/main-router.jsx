@@ -1,7 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import TheTestPage from "../components/CustomPrmForm/TheTestPage";
 
 // React Native Paper
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
@@ -18,15 +17,16 @@ const theme = {
 };
 
 // Components import
-import LoginComponent from "../components/login/Login";
-import RegistrationComponent from "../components/register/Register";
+import LoginComponent from "../components/Authentication/Login/Login";
+import RegistrationComponent from "../components/Authentication/Register/Register";
+import HomePage from "../components/HomePage/HomePage";
 
 function MainRoutes() {
   const Stack = createNativeStackNavigator();
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="register">
+        <Stack.Navigator initialRouteName="home">
           <Stack.Screen
             name="login"
             component={LoginComponent}
@@ -38,8 +38,8 @@ function MainRoutes() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="test"
-            component={TheTestPage}
+            name="home"
+            component={HomePage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

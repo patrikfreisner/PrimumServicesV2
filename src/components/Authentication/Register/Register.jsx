@@ -1,33 +1,31 @@
 import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Button, Headline, Subheading, Text } from "react-native-paper";
-import PrmFormBuilder from "../PrmComponents/FormBuilder/PrmFormBuilder";
-import LoginFormComponent from "./FormComponent/LoginFormComponent";
+import { Button, Headline, Text } from "react-native-paper";
+import RegisterFormComponent from "./FormComponent/RegistrationFormComponent";
 
 // Set values for StyleComponent
 var { width, height } = Dimensions.get("window");
 
-function LoginComponent({ navigation }) {
+function RegistrationComponent({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.mainViewContainer}>
         <View style={styles.greattingsAndLogoViewContainer}>
-          <Image style={styles.logoImage} source={require("../../assets/img/jenkins_temp_logo.png")} />
+          <Image style={styles.logoImage} source={require("../../../assets/img/jenkins_temp_logo.png")} />
           <Headline style={{ textAlign: "center" }}>
-            Bem vindo ao Charles.
+            Primeiro umas informações ;)
           </Headline>
-          <Subheading> Vamos começar? </Subheading>
         </View>
-        <LoginFormComponent navigation={navigation} />
+        <RegisterFormComponent />
         <Button
           mode="text"
           style={{ marginTop: 15 }}
           onPress={() => {
-            navigation.push("register");
+            navigation.push("login");
           }}
         >
-          <Text style={{ fontSize: 12 }}>Não tem uma conta na Primum?</Text>
+          <Text style={{ fontSize: 12 }}>Já tem uma conta na Primum?</Text>
         </Button>
       </View>
     </ScrollView>
@@ -50,8 +48,7 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     height: height * 0.3,
     resizeMode: "contain",
-  },
-  logoImageUrl: require("../../assets/img/LOGO_PRIMUM_BLACK.png")
+  }
 });
 
-export default LoginComponent;
+export default RegistrationComponent;
