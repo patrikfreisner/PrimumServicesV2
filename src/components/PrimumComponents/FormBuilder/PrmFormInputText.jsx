@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Controller, useWatch } from "react-hook-form";
-import { HelperText } from "react-native-paper";
-import { TextInput } from "react-native-paper";
+import { HelperText, TextInput } from "react-native-paper";
 
 function PrmFormInputText({ control, errors, name, watch, rules: { validate, ...rules }, messages, ...props }) {
 

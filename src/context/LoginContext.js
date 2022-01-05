@@ -2,7 +2,6 @@ import React, { createContext, useState, useContext, useEffect } from 'react'
 
 import UserLoginService from '../assets/js/user-login-service'
 import CognitoService from '../assets/js/cognito-service'
-import { Outlet } from 'react-router'
 
 const _loginService = new UserLoginService()
 const _cognitoService = new CognitoService()
@@ -10,7 +9,7 @@ const _cognitoService = new CognitoService()
 export const LoginContext = createContext()
 LoginContext.displayName = 'LoginContext'
 
-export const LoginProvider = () => {
+export const LoginProvider = ({ children }) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [userData, setUserData] = useState({})
@@ -26,7 +25,7 @@ export const LoginProvider = () => {
         setIsAuthenticating
       }}
     >
-      <Outlet />
+      {children}
     </LoginContext.Provider>
   )
 }
@@ -42,7 +41,7 @@ export const useLoginContext = () => {
   } = useContext(LoginContext)
 
   // Authenticate
-  function authenticate(user, passw, callback) {
+  function authenticate(user, passw, callback = () => { }) {
     _loginService.authenticate(user, passw, (evt, response) => {
       // _loginService.isAuthenticated((evt, response) => {
       setIsAuthenticated(response)
@@ -55,7 +54,7 @@ export const useLoginContext = () => {
   }
 
   // Check if is authenticated
-  function checkIsAuthenticated(callback) {
+  function checkIsAuthenticated(callback = () => { }) {
     _loginService.isAuthenticated((msg, isAuthenticated) => {
       if (isAuthenticated === true) {
         setIsAuthenticated(isAuthenticated);

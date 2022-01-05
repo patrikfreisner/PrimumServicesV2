@@ -4,9 +4,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Button, Headline, Subheading, Text } from "react-native-paper";
 import LoginFormComponent from "./FormComponent/LoginFormComponent";
 
-// Set values for StyleComponent
-var { width, height } = Dimensions.get("window");
-
 function LoginComponent({ navigation }) {
   return (
     <ScrollView>
@@ -38,7 +35,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     justifyContent: "center",
-    marginTop: height * 0.11,
+    marginTop: '11vh',
   },
   greattingsAndLogoViewContainer: {
     alignItems: "center",
@@ -46,8 +43,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logoImage: {
-    width: width * 0.5,
-    height: height * 0.3,
+    width: '50%',
+    height: '30vh',
     resizeMode: "contain",
   }
 });

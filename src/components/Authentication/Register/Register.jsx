@@ -2,10 +2,8 @@ import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button, Headline, Text } from "react-native-paper";
+import { useRegisterContext } from "../../../context/RegisterContext";
 import RegisterFormComponent from "./FormComponent/RegistrationFormComponent";
-
-// Set values for StyleComponent
-var { width, height } = Dimensions.get("window");
 
 function RegistrationComponent({ navigation }) {
   return (
@@ -36,8 +34,7 @@ const styles = StyleSheet.create({
   mainViewContainer: {
     padding: 15,
     flex: 1,
-    justifyContent: "center",
-    marginTop: height * 0.11,
+    justifyContent: "center"
   },
   greattingsAndLogoViewContainer: {
     alignItems: "center",
@@ -45,8 +42,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logoImage: {
-    width: width * 0.5,
-    height: height * 0.3,
+    width: '50%',
+    height: '30vh',
     resizeMode: "contain",
   }
 });

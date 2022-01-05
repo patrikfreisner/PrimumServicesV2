@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from 'react'
-import { Outlet } from 'react-router'
 
 import UserRegistrationService from '../assets/js/user-registration-service'
 
@@ -8,7 +7,7 @@ var _userRegistrationService = new UserRegistrationService()
 export const RegisterContext = createContext()
 RegisterContext.displayName = 'RegisterContext'
 
-export const RegisterProvider = () => {
+export const RegisterProvider = ({ children }) => {
   const [userRegistrationData, setUserRegistrationData] = useState({})
   const [isRegistrationInProgress, setIsRegistrationInProgress] = useState({})
 
@@ -21,7 +20,7 @@ export const RegisterProvider = () => {
         setIsRegistrationInProgress
       }}
     >
-      <Outlet />
+      {children}
     </RegisterContext.Provider>
   )
 }
@@ -34,7 +33,7 @@ export const useRegisterContext = () => {
     setIsRegistrationInProgress
   } = useContext(RegisterContext)
 
-  function registerNewUser (userData, callback) {
+  function registerNewUser(userData, callback) {
     _userRegistrationService.register(userData, props => {
       callback(props)
     })

@@ -10,9 +10,11 @@ function RegisterFormComponent() {
 
   return (
     <View>
-      <PrmFormBuilder onSubmit={(resp) => {
-        console.log(resp);
-      }}>
+      <PrmFormBuilder
+        defaultValues={{ name: "", user: "", email: "", password: "", confirm_password: "" }}
+        onSubmit={(resp) => {
+          console.log(resp);
+        }}>
         <PrmFormInputText
           label="Nome"
           name="name"
