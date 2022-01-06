@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -34,12 +34,16 @@ import HomePage from "../components/HomePage/HomePage";
 // Context
 import { useLoginContext } from '../context/LoginContext';
 import { RegisterProvider } from '../context/RegisterContext';
+import ConfirmAccount from "../components/Authentication/Login/ConfirmAccount";
+import ForgotPassword from "../components/Authentication/Login/ForgotPassword";
 
 function MainRoutes() {
   const Stack = createNativeStackNavigator();
   const { isAuthenticated, checkIsAuthenticated } = useLoginContext();
 
-  checkIsAuthenticated(() => {});
+  useEffect(() => {
+    checkIsAuthenticated();
+  }, [isAuthenticated]);
 
   return (
     <PaperProvider theme={theme}>
@@ -60,6 +64,20 @@ function MainRoutes() {
                     <RegistrationComponent {...props} />
                   </RegisterProvider>
                 )}
+              />
+              <Stack.Screen
+                name="confirm_account"
+                options={{ presentation: 'modal', headerTitle: "Confirme sua conta Primum!", headerTitleAlign: 'center' }}
+                children={(props) => (
+                  <RegisterProvider>
+                    <ConfirmAccount {...props} />
+                  </RegisterProvider>
+                )}
+              />
+              <Stack.Screen
+                name="forgot_password"
+                options={{ presentation: 'modal', headerTitle: "Esqueceu sua senha?", headerTitleAlign: 'center' }}
+                component={ForgotPassword}
               />
             </>
           ) : (

@@ -52,29 +52,31 @@ export default class UserLoginService {
         console.log(result)
       },
       onFailure: function (err) {
-        callback.cognitoCallback(err.message, null)
+        callback(err.message, null)
       },
       inputVerificationCode() {
-        callback.cognitoCallback('', null)
+        callback('', null)
       }
     })
   }
 
   confirmNewPassword(email, verificationCode, password, callback) {
+    if (!callback) throw "confirmNewPassword must have a callback function";
+
     let cognitoService = new CognitoService()
     let userData = {
       Username: email,
       Pool: cognitoService.getUserPool()
     }
 
-    let cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+    let cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
     cognitoUser.confirmPassword(verificationCode, password, {
       onSuccess: function (result) {
-        callback.cognitoCallback('', result)
+        callback('', result)
       },
       onFailure: function (err) {
-        callback.cognitoCallback(err.message, null)
+        callback(err.message, null)
       }
     })
   }

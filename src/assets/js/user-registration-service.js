@@ -2,11 +2,11 @@ import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js'
 import CognitoService from './cognito-service'
 
 export default class UserRegistrationService {
-  constructor () {
+  constructor() {
     console.log('UserRegistrationService has been initialized')
   }
 
-  register (user, callback) {
+  register(user, callback) {
     let cognitoService = new CognitoService()
     var attributeList = []
 
@@ -46,7 +46,7 @@ export default class UserRegistrationService {
       })
   }
 
-  confirmRegistration (username, confirmationCode, callback) {
+  confirmRegistration(username, confirmationCode, callback) {
     let cognitoService = new CognitoService()
     var userData = {
       Username: username,
@@ -57,27 +57,27 @@ export default class UserRegistrationService {
 
     cognitoUser.confirmRegistration(confirmationCode, true, (err, result) => {
       if (err) {
-        callback.cognitoCallback(err.message, null)
+        callback(err.message, null)
       } else {
-        callback.cognitoCallback('', result)
+        callback('', result)
       }
     })
   }
 
-  resendCode (username, callback) {
+  resendCode(username, callback) {
     let cognitoService = new CognitoService()
     var userData = {
       Username: username,
       Pool: cognitoService.getUserPool()
     }
 
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
     cognitoUser.resendConfirmationCode(function (err, result) {
       if (err) {
-        callback.cognitoCallback(err.message, null)
+        callback(err.message, null)
       } else {
-        callback.cognitoCallback('', result)
+        callback('', result)
       }
     })
   }

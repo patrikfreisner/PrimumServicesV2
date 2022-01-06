@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import {
   Paragraph,
@@ -21,20 +21,39 @@ export default function LoginFormComponent({ navigation }) {
     message: ""
   });
   const [loadingModal, setLoadingModal] = useState(false);
-  const { authenticate } = useLoginContext();
+  const { authenticate, setUserData } = useLoginContext();
 
   function onSubmit(formValues) {
     setLoadingModal(true);
     authenticate(formValues?.user, formValues?.password, (msg, response) => {
-      console.log(msg);
-      console.log(response);
-      setLoadingModal(false);
-      if (response) navigation.navigate('home');
-
-      if (msg == "Incorrect username or password.") setErrorDialogModal({
-        hasError: true,
-        message: "Usuário ou senha incorreto!"
+      setUserData({
+        email: formValues.user
       });
+      if (response) {
+        navigation.navigate('home');
+      }
+
+      if (msg) {
+        setLoadingModal(false);
+        if (msg == "Incorrect username or password.") {
+          setErrorDialogModal({
+            hasError: true,
+            message: "Usuário ou senha incorreto!"
+          });
+        } else if (msg == "User is not confirmed.") {
+          navigation.navigate("confirm_account");
+        } else if (message == "User is disabled.") {
+          setErrorDialogModal({
+            hasError: true,
+            message: "Seu usuário foi desabilitado temporariamente pelo sistema, para solucionar o problema entre em contato com a equipe da Primum.\nNúmero (47) 99919-6385."
+          });
+        } else {
+          setErrorDialogModal({
+            hasError: true,
+            message: "Ocorreu um problema ao fazer login, por favor tente novamente!"
+          });
+        }
+      }
     });
   }
 
@@ -69,6 +88,7 @@ export default function LoginFormComponent({ navigation }) {
           <ActivityIndicator animating={true} size="large" />
           <Headline style={{ textAlign: "center" }}> Carregando... </Headline>
         </Modal>
+
         <Dialog visible={errorDialogModal.hasError}>
           <Dialog.Content style={{ alignItems: 'center' }}>
             <IconButton icon={'alert-circle'} color="#ffbb00" size={80} />

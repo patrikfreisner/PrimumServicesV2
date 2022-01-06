@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button, Headline, Text } from "react-native-paper";
-import { useRegisterContext } from "../../../context/RegisterContext";
 import RegisterFormComponent from "./FormComponent/RegistrationFormComponent";
 
 function RegistrationComponent({ navigation }) {
@@ -15,7 +14,7 @@ function RegistrationComponent({ navigation }) {
             Primeiro umas informações ;)
           </Headline>
         </View>
-        <RegisterFormComponent />
+        <RegisterFormComponent navigation={navigation} />
         <Button
           mode="text"
           style={{ marginTop: 15 }}

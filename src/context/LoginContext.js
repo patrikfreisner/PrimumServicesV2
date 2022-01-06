@@ -41,13 +41,13 @@ export const useLoginContext = () => {
   } = useContext(LoginContext)
 
   // Authenticate
-  function authenticate(user, passw, callback = () => { }) {
+  function authenticate(user, passw, callback) {
     _loginService.authenticate(user, passw, (evt, response) => {
       // _loginService.isAuthenticated((evt, response) => {
       setIsAuthenticated(response)
       setUserData(_cognitoService.getCurrentUserData())
       if (callback) {
-        callback(evt, response)
+        callback(evt, response);
       }
       // })
     })
@@ -58,10 +58,21 @@ export const useLoginContext = () => {
     _loginService.isAuthenticated((msg, isAuthenticated) => {
       if (isAuthenticated === true) {
         setIsAuthenticated(isAuthenticated);
-
-        callback(isAuthenticated);
+        callback(msg, isAuthenticated);
       }
     });
+  }
+
+  function forgotPassword(username, callback) {
+    _loginService.forgotPassword(username, (event, response) => {
+      callback(event, response);
+    })
+  }
+
+  function confirmNewPassword(username, password, verificationCode, callback) {
+    _loginService.confirmNewPassword(username, verificationCode, password, (msg, response) => {
+      callback(msg, response);
+    })
   }
 
   // Logout
@@ -91,6 +102,8 @@ export const useLoginContext = () => {
     setIsAuthenticating,
     checkIsAuthenticated,
     authenticate,
+    forgotPassword,
+    confirmNewPassword,
     logout
   }
 }

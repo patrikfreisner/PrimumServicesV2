@@ -16,14 +16,19 @@ function LoginComponent({ navigation }) {
           <Subheading> Vamos começar? </Subheading>
         </View>
         <LoginFormComponent navigation={navigation} />
-        <Button
-          mode="text"
-          style={{ marginTop: 15 }}
+        <Button mode="text" style={{ marginTop: 15 }}
           onPress={() => {
             navigation.push("register");
           }}
         >
           <Text style={{ fontSize: 12 }}>Não tem uma conta na Primum?</Text>
+        </Button>
+        <Button mode="text" style={{ marginTop: 15 }}
+          onPress={() => {
+            navigation.push("forgot_password");
+          }}
+        >
+          <Text style={{ fontSize: 12 }}>Esqueceu sua senha?</Text>
         </Button>
       </View>
     </ScrollView>
@@ -35,7 +40,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     justifyContent: "center",
-    marginTop: '11vh',
+    marginTop: '7vh',
   },
   greattingsAndLogoViewContainer: {
     alignItems: "center",

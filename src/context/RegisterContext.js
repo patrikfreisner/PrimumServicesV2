@@ -39,11 +39,18 @@ export const useRegisterContext = () => {
     })
   }
 
+  function resendConfirmationCode(username, callback) {
+    _userRegistrationService.resendCode(username, (msg, result) => {
+      callback(msg, result);
+    })
+  }
+
   return {
     userRegistrationData,
     setUserRegistrationData,
     isRegistrationInProgress,
     setIsRegistrationInProgress,
-    registerNewUser
+    registerNewUser,
+    resendConfirmationCode
   }
 }
