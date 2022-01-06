@@ -1,0 +1,18 @@
+ - Company
+	- 
+ - Service
+	- Title
+	- Description
+	- Value
+ - Service_Order
+	- Title
+	- Description
+	- Value
+	- Comments
+	- CompanyID
+	- UserID
+ - Device
+	- Brand
+	- Model
+	- SerialNumber
+	- Details
