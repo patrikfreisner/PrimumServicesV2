@@ -20,9 +20,6 @@ function RegisterFormComponent({ navigation }) {
   function onRegister(formValues) {
     console.log(formValues);
     registerNewUser(formValues, (msg, response) => {
-      console.log(msg);
-      console.log(response);
-
       if (!msg) {
         // Thats OK message.
         setErrorDialogModal({

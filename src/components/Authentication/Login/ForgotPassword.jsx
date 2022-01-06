@@ -1,9 +1,8 @@
 //import liraries
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { Button, Headline, Paragraph, Portal, Dialog, IconButton, TextInput, Caption } from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Button, Headline, Paragraph, Portal, Dialog, IconButton } from 'react-native-paper';
 import { useLoginContext } from '../../../context/LoginContext';
-import { useRegisterContext } from '../../../context/RegisterContext';
 import PrmFormBuilder from '../../PrimumComponents/FormBuilder/PrmFormBuilder';
 import PrmFormInputText from '../../PrimumComponents/FormBuilder/PrmFormInputText';
 
