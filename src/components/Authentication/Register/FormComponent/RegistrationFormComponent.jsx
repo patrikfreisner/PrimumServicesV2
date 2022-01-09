@@ -52,6 +52,7 @@ function RegisterFormComponent({ navigation }) {
   return (
     <View>
       <PrmFormBuilder
+        mode={'all'}
         defaultValues={{ name: "", nickname: "", email: "", password: "", confirm_password: "" }}
         onSubmit={onRegister}>
         <PrmFormInputText

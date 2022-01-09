@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { View, Text } from "react-native";
 
-function PrmFormBuilder({ onSubmit, defaultValues, children }) {
+function PrmFormBuilder({ onSubmit, defaultValues, mode, children }) {
   const {
     control,
     watch,
@@ -10,6 +10,7 @@ function PrmFormBuilder({ onSubmit, defaultValues, children }) {
     formState: { errors },
   } = useForm({
     defaultValues,
+    mode
   });
 
   return (
